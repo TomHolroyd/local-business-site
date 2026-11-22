@@ -1,0 +1,88 @@
+# Demo: Fernhill Plumbing & Heating (fictional business; Ofcom drama phone numbers, made-up town).
+title = "Fernhill Plumbing & Heating"
+
+# Each demo reuses the template's layouts/assets but has its own services list (and optional photos).
+[module]
+  [[module.mounts]]
+    source = "layouts"
+    target = "layouts"
+  [[module.mounts]]
+    source = "static"
+    target = "static"
+  [[module.mounts]]
+    source = "assets"
+    target = "assets"
+  [[module.mounts]]
+    source = "demos/trades/assets"
+    target = "assets"
+  [[module.mounts]]
+    source = "data"
+    target = "data"
+    files = ["! services.yaml"]
+  [[module.mounts]]
+    source = "demos/trades/data"
+    target = "data"
+
+[params]
+  seoTitle = "Plumber & Heating Engineer in Fernhill"
+  headline = "Reliable plumbing and heating in Fernhill"
+  lead = "Boiler repairs, servicing and plumbing jobs big and small. Clear quotes, tidy work, no call-out surprises."
+  description = "Plumber and heating engineer covering Fernhill: boiler repairs, servicing, installations, leaks and bathrooms."
+  businessKind = "plumbing and heating business"
+  areaServed = ["Northgate", "Old Town", "Ashby Green", "Fernhill"]
+  servicesHeading = "What we do"
+  legalName = "Fernhill Plumbing & Heating"
+  companyNumber = ""
+  registeredOffice = ""
+
+  [params.demo]
+    current = "trades"
+
+  [params.cta]
+    title = "Boiler playing up?"
+    text = "Call us and we'll talk you through it, then book a visit at a time that suits you."
+    button = "Call now"
+
+  [params.brand]
+    wordmark = ""
+    icon = ""
+    theme = "light"
+    font = "archivo"
+    corners = "soft"
+    uppercase = false
+    accent = "#1d4ed8"
+    accentText = "#ffffff"
+
+  [params.hero]
+    image = ""   # e.g. "photos/hero.jpg" in this demo's assets/ folder (licensed photo)
+
+  [params.contact]
+    phone = "01632 960606"
+    phoneIntl = "+441632960606"
+    email = "jobs@fernhill-plumbing.example"
+    whatsapp = ""
+
+  [params.address]
+    number = "9"
+    road = "Mill Lane"
+    area = "Northgate"
+    locality = "Fernhill"
+    region = ""
+    postcode = "FH2 6ML"
+    mapsQuery = "Fernhill Plumbing & Heating Fernhill"
+    latitude = 0.0
+    longitude = 0.0
+
+  [[params.hours]]
+    label = "Monday – Friday"
+    days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+    opens = "08:00"
+    closes = "18:00"
+  [[params.hours]]
+    label = "Saturday"
+    days = ["Saturday"]
+    opens = "09:00"
+    closes = "13:00"
+  [[params.hours]]
+    label = "Sunday"
+    days = ["Sunday"]

@@ -1,0 +1,19 @@
+# Services for the The Daily Grind demo.
+
+- name: "Coffee & tea"
+  summary: "Locally roasted espresso, filter, and loose-leaf teas. Oat milk at no extra cost."
+
+- name: "All-day breakfast"
+  summary: "Full English, veggie and vegan breakfasts, eggs your way and pancakes."
+
+- name: "Lunch"
+  summary: "Toasties, soup of the day and fresh salads from 11:30."
+
+- name: "Cakes & bakes"
+  summary: "Baked here every morning: brownies, scones and a different traybake daily."
+
+- name: "Takeaway"
+  summary: "Everything on the menu to go. Bring your own cup for 20p off."
+
+- name: "Dog friendly"
+  summary: "Water bowls, treats and a warm welcome for four-legged customers."

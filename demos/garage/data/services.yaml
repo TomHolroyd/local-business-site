@@ -1,0 +1,19 @@
+# Services for the Northgate Motors demo.
+
+- name: "MOTs"
+  summary: "Class 4 MOT tests while you wait or drop off."
+
+- name: "Servicing"
+  summary: "Interim and full services to manufacturer schedule, keeping your warranty intact."
+
+- name: "Diagnostics"
+  summary: "Warning light on? We'll find the fault and explain it before any work starts."
+
+- name: "Brakes"
+  summary: "Pads, discs and fluid: checked for free, replaced at a fair price."
+
+- name: "Tyres"
+  summary: "Budget to premium brands, fitted and balanced."
+
+- name: "Clutches"
+  summary: "Clutch and flywheel replacement on all makes and models."

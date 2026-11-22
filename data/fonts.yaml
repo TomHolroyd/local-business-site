@@ -1,0 +1,10 @@
+# Heading font presets for [params.brand] font. Files live in assets/fonts/ (SIL Open Font License,
+# licences in assets/fonts/licenses/, from Fontsource). Body text always uses the fast system font.
+# Only the chosen font is published and loaded.
+system:   { fallback: 'system-ui, -apple-system, "Segoe UI", Roboto, sans-serif', weight: 800 }
+archivo:  { family: Archivo, file: archivo-latin-800-normal.woff2, weight: 800, fallback: 'system-ui, sans-serif' }            # strong grotesk: trades
+oswald:   { family: Oswald, file: oswald-latin-600-normal.woff2, weight: 600, fallback: '"Arial Narrow", system-ui, sans-serif' } # condensed: garages, motors
+playfair: { family: Playfair Display, file: playfair-display-latin-600-normal.woff2, weight: 600, fallback: 'Georgia, serif' } # classic serif: hair, food shops
+dmserif:  { family: DM Serif Display, file: dm-serif-display-latin-400-normal.woff2, weight: 400, fallback: 'Georgia, serif' } # elegant: beauty
+nunito:   { family: Nunito, file: nunito-latin-800-normal.woff2, weight: 800, fallback: 'system-ui, sans-serif' }               # friendly rounded: cafés
+josefin:  { family: Josefin Sans, file: josefin-sans-latin-600-normal.woff2, weight: 600, fallback: 'system-ui, sans-serif' }  # chic geometric: nails

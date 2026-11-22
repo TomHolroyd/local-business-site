@@ -1,0 +1,19 @@
+# Services for the Crumb & Co. demo.
+
+- name: "Sourdough & bread"
+  summary: "Slow-fermented loaves, baked daily. Reserve yours by phone."
+
+- name: "Pastries"
+  summary: "Croissants, cinnamon buns and seasonal danishes, out of the oven by 8am."
+
+- name: "Celebration cakes"
+  summary: "Made to order with your choice of flavours, sizes and decoration."
+
+- name: "Deli counter"
+  summary: "Local cheeses, cured meats, olives and antipasti, sliced to order."
+
+- name: "Local produce"
+  summary: "Eggs, honey, jams and chutneys from farms around Fernhill."
+
+- name: "Sandwiches to go"
+  summary: "Made fresh on our own bread from 11am until they run out."

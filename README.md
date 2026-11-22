@@ -8,6 +8,8 @@ A one-page website for a small local business: a garage, tradesperson, salon, ca
 - **Hardened:** a strict Content-Security-Policy and security headers, a checksum-verified Hugo download, and SHA-pinned GitHub Actions.
 - **Agent-driven maintenance:** the owner files a change request as a GitHub issue, Claude opens a PR, a Cloudflare preview appears, and you approve. A monthly agent keeps Hugo current.
 - **Can't go live half-finished:** production builds fail while any `TODO` placeholder remains.
+- **Styles through config:** dark, light or warm themes, seven heading fonts (self-hosted), corner styles, uppercase headings and an optional hero photo.
+- **Demo gallery:** seven fictional businesses (garage, hair, nails, beauty, café, trades and bakery) built from this template with a switcher bar. See [demos/README.md](demos/README.md).
 
 Example in production: an independent car repair garage in Bournemouth.
 
@@ -22,7 +24,8 @@ Click **Use this template**, then follow **[NEW-CLIENT.md](NEW-CLIENT.md)**.
 | Name, contact, address, hours, legal details, SEO text | `hugo.toml` `[params]` |
 | Services | `data/services.yaml` |
 | Logos | `assets/brand/` and `[params.brand]` |
-| Colours and light/dark theme | `[params.brand]` (`theme`, `accent`, `accentText`) |
+| Theme, font, corners, colours | `[params.brand]` (`theme`, `font`, `corners`, `uppercase`, `accent`, `accentText`) |
+| Hero photo | `[params.hero] image` |
 | Cloudflare Worker name and domain | `wrangler.jsonc` |
 
 Preview locally with `brew install hugo`, then `hugo server`.

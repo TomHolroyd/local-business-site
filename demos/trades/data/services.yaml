@@ -1,0 +1,19 @@
+# Services for the Fernhill Plumbing & Heating demo.
+
+- name: "Boiler repairs"
+  summary: "Most makes diagnosed and fixed on the first visit."
+
+- name: "Boiler servicing"
+  summary: "Annual servicing to keep it safe, efficient and under warranty."
+
+- name: "New boilers"
+  summary: "Honest advice on the right boiler, with a fixed-price quote."
+
+- name: "Leaks & repairs"
+  summary: "Dripping taps, leaking pipes, toilets and blocked sinks."
+
+- name: "Bathrooms"
+  summary: "From a new shower to a full bathroom refit."
+
+- name: "Landlords"
+  summary: "Annual checks and certificates for rental properties."

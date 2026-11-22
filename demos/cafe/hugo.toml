@@ -1,0 +1,90 @@
+# Demo: The Daily Grind (fictional business; Ofcom drama phone numbers, made-up town).
+title = "The Daily Grind"
+
+# Each demo reuses the template's layouts/assets but has its own services list (and optional photos).
+[module]
+  [[module.mounts]]
+    source = "layouts"
+    target = "layouts"
+  [[module.mounts]]
+    source = "static"
+    target = "static"
+  [[module.mounts]]
+    source = "assets"
+    target = "assets"
+  [[module.mounts]]
+    source = "demos/cafe/assets"
+    target = "assets"
+  [[module.mounts]]
+    source = "data"
+    target = "data"
+    files = ["! services.yaml"]
+  [[module.mounts]]
+    source = "demos/cafe/data"
+    target = "data"
+
+[params]
+  seoTitle = "Café in Fernhill: Coffee, Breakfast & Lunch"
+  headline = "Good coffee, proper breakfasts"
+  lead = "Locally roasted coffee, all-day breakfasts and homemade cakes. Dogs and laptops welcome."
+  description = "Café in Fernhill serving locally roasted coffee, all-day breakfast, lunches and homemade cakes. Dog friendly."
+  businessKind = "café"
+  areaServed = ["Ashby Green", "Fernhill"]
+  servicesHeading = "On the menu"
+  legalName = "The Daily Grind"
+  companyNumber = ""
+  registeredOffice = ""
+
+  [params.demo]
+    current = "cafe"
+
+  [params.cta]
+    title = "Planning a get-together?"
+    text = "We take bookings for groups of six or more, and do platters for parties."
+    button = "Call to book"
+
+  [params.brand]
+    wordmark = ""
+    icon = ""
+    theme = "warm"
+    font = "nunito"
+    corners = "round"
+    uppercase = false
+    accent = "#b45309"
+    accentText = "#ffffff"
+
+  [params.hero]
+    image = ""   # e.g. "photos/hero.jpg" in this demo's assets/ folder (licensed photo)
+
+  [params.contact]
+    phone = "01632 960505"
+    phoneIntl = "+441632960505"
+    email = "hello@thedailygrind.example"
+    whatsapp = ""
+
+  [params.address]
+    number = "41"
+    road = "High Street"
+    area = "Ashby Green"
+    locality = "Fernhill"
+    region = ""
+    postcode = "FH3 1HS"
+    mapsQuery = "The Daily Grind Fernhill"
+    latitude = 0.0
+    longitude = 0.0
+
+  [[params.hours]]
+    label = "Monday – Friday"
+    days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+    opens = "07:30"
+    closes = "16:00"
+  [[params.hours]]
+    label = "Saturday"
+    days = ["Saturday"]
+    opens = "08:00"
+    closes = "16:00"
+  [[params.hours]]
+    label = "Sunday"
+    days = ["Sunday"]
+    opens = "09:00"
+    closes = "14:00"

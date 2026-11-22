@@ -1,0 +1,19 @@
+# Services for the Polished demo.
+
+- name: "Gel manicure"
+  summary: "Long-lasting glossy colour that stays chip-free for up to three weeks."
+
+- name: "BIAB"
+  summary: "Builder gel to strengthen and grow your natural nails."
+
+- name: "Acrylic extensions"
+  summary: "Any length and shape, from natural to statement."
+
+- name: "Pedicures"
+  summary: "Soak, scrub, shape and polish. Gel or classic."
+
+- name: "Nail art"
+  summary: "Chrome, French, ombré and hand-painted designs."
+
+- name: "Removal"
+  summary: "Gentle soak-off removal that protects your natural nail."

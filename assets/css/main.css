@@ -1,15 +1,38 @@
-/* This file is a Hugo template (see baseof.html): colours come from [params.brand] in hugo.toml.
-   Keep every colour as a token here; components below only use var(--...). */
+/* This file is a Hugo template (see baseof.html). Every brand/style choice comes from
+   [params.brand] in hugo.toml and becomes a token in :root; components below only use var(--...). */
 {{- $b := site.Params.brand }}
+{{- $theme := $b.theme | default "dark" }}
 {{- $accent := $b.accent | default "#1d4ed8" }}
+{{- $fonts := hugo.Data.fonts }}
+{{- $font := index $fonts ($b.font | default "system") | default (index $fonts "system") }}
+{{- $radius := index (dict "sharp" "3px" "soft" "10px" "round" "20px") ($b.corners | default "soft") | default "10px" }}
+
+{{- with $font.file }}{{ with resources.Get (printf "fonts/%s" .) }}
+@font-face {
+  font-family: "{{ $font.family }}";
+  src: url("{{ (. | fingerprint).RelPermalink }}") format("woff2");
+  font-weight: {{ $font.weight }};
+  font-style: normal;
+  font-display: swap;
+}
+{{- end }}{{ end }}
+
 :root {
-{{- if eq $b.theme "light" }}
+{{- if eq $theme "light" }}
   --bg: #ffffff;
   --surface: #f6f6f7;
   --surface-2: #ececee;
   --border: #dcdce0;
   --text: #16161a;
   --muted: #55555e;
+  color-scheme: light;
+{{- else if eq $theme "warm" }}
+  --bg: #fbf6ef;
+  --surface: #f4ebdf;
+  --surface-2: #ecdfcd;
+  --border: #e0d0ba;
+  --text: #2b1d14;
+  --muted: #6b5646;
   color-scheme: light;
 {{- else }}
   --bg: #000000;
@@ -22,8 +45,13 @@
 {{- end }}
   --accent: {{ $accent }};
   --accent-text: {{ $b.accentText | default "#ffffff" }};   /* text on accent buttons */
-  --accent-hover: color-mix(in srgb, var(--accent) 82%, {{ cond (eq $b.theme "light") "black" "white" }});
-  --radius: 10px;
+  --accent-hover: color-mix(in srgb, var(--accent) 82%, {{ cond (eq $theme "dark") "white" "black" }});
+  --heading-font: {{ with $font.family }}"{{ . }}", {{ end }}{{ $font.fallback | default "system-ui, sans-serif" | safeCSS }};
+  --heading-weight: {{ $font.weight | default 800 }};
+  --heading-case: {{ cond ($b.uppercase | default false) "uppercase" "none" }};
+  --heading-spacing: {{ cond ($b.uppercase | default false) ".03em" "normal" }};
+  --radius: {{ $radius }};
+  --btn-radius: {{ cond (eq $b.corners "round") "999px" "var(--radius)" }};
   --wrap: 1100px;
 }
 
@@ -46,6 +74,12 @@ img { max-width: 100%; height: auto; display: block; }
 a { color: var(--text); text-decoration-color: var(--accent); text-underline-offset: 3px; }
 a:hover { color: var(--accent-hover); }
 
+h1, h2, h3, .brand-text {
+  font-family: var(--heading-font);
+  font-weight: var(--heading-weight);
+  text-transform: var(--heading-case);
+  letter-spacing: var(--heading-spacing);
+}
 h1, h2, h3 { line-height: 1.2; margin: 0 0 .5em; }
 h1 { font-size: clamp(1.9rem, 5vw, 3rem); }
 h2 { font-size: clamp(1.5rem, 3.5vw, 2rem); }
@@ -70,7 +104,7 @@ p { margin: 0 0 1em; }
   font-weight: 700;
   text-decoration: none;
   padding: .8rem 1.4rem;
-  border-radius: var(--radius);
+  border-radius: var(--btn-radius);
   border: 2px solid var(--accent);
   white-space: nowrap;
 }
@@ -102,6 +136,16 @@ p { margin: 0 0 1em; }
   background: radial-gradient(ellipse at top, color-mix(in srgb, var(--accent) 14%, var(--bg)) 0%, var(--bg) 70%);
 }
 .hero-mark { width: 180px; margin: 0 auto 1.5rem; }
+
+/* Hero with photo: the <img> fills the section behind a scrim so text stays readable. */
+.hero.has-image { position: relative; overflow: hidden; padding: 6rem 0 5rem; background: var(--bg); }
+.hero-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+.hero.has-image::before {
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 55%, transparent), color-mix(in srgb, var(--bg) 88%, transparent));
+}
+.hero.has-image .hero-inner { position: relative; z-index: 2; }
+.hero.has-image .lead { color: var(--text); }
 .lead { color: var(--muted); font-size: 1.2rem; max-width: 40rem; margin: 0 auto 2rem; }
 .cta-row { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; }
 
@@ -159,5 +203,13 @@ address { font-style: normal; margin-bottom: 1em; }
 
 .areas { color: var(--muted); font-size: .95rem; }
 
-.brand-text { font-weight: 800; font-size: 1.35rem; color: var(--text); text-decoration: none; }
+.brand-text { font-size: 1.35rem; color: var(--text); text-decoration: none; }
 .brand { text-decoration: none; }
+
+/* Demo switcher bar (only rendered when [params.demo] is set; see demos/README.md). */
+.demo-bar { background: var(--text); color: var(--bg); font-size: .9rem; }
+.demo-bar .wrap { display: flex; flex-wrap: wrap; gap: .35rem 1rem; align-items: center; justify-content: center; padding-top: .45rem; padding-bottom: .45rem; }
+.demo-bar a { color: var(--bg); text-decoration-color: var(--accent); }
+.demo-bar a[aria-current="page"] { font-weight: 700; text-decoration: none; border-bottom: 2px solid var(--accent); }
+.demo-label { font-weight: 700; text-transform: uppercase; letter-spacing: .06em; font-size: .75rem; opacity: .8; }
+.demo-cta { font-weight: 700; }

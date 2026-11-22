@@ -25,8 +25,21 @@ jobs:
             scripts/build.sh
           fi
 
+      # Demo gallery (template repo only): every demo is a different configuration of the
+      # same template, so this also tests the template against very different businesses.
+      - name: Build demos
+        if: hashFiles('demos/common.toml') != ''
+        run: scripts/build-demos.sh
+
       - name: Check internal links
         uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
         with:
           args: --offline --no-progress --root-dir "${{ github.workspace }}/public" 'public/**/*.html'
+          fail: true
+
+      - name: Check demo links
+        if: hashFiles('demos/common.toml') != ''
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        with:
+          args: --offline --no-progress --root-dir "${{ github.workspace }}/public-demos" 'public-demos/**/*.html'
           fail: true

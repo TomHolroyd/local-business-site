@@ -1,0 +1,88 @@
+# Demo: Crumb & Co. (fictional business; Ofcom drama phone numbers, made-up town).
+title = "Crumb & Co."
+
+# Each demo reuses the template's layouts/assets but has its own services list (and optional photos).
+[module]
+  [[module.mounts]]
+    source = "layouts"
+    target = "layouts"
+  [[module.mounts]]
+    source = "static"
+    target = "static"
+  [[module.mounts]]
+    source = "assets"
+    target = "assets"
+  [[module.mounts]]
+    source = "demos/bakery/assets"
+    target = "assets"
+  [[module.mounts]]
+    source = "data"
+    target = "data"
+    files = ["! services.yaml"]
+  [[module.mounts]]
+    source = "demos/bakery/data"
+    target = "data"
+
+[params]
+  seoTitle = "Bakery & Deli in Fernhill Old Town"
+  headline = "Baked fresh every morning"
+  lead = "Sourdough, pastries and celebration cakes from our ovens, plus a deli counter full of local cheese and charcuterie."
+  description = "Independent bakery and deli in Fernhill Old Town: sourdough, pastries, celebration cakes, deli counter and local produce."
+  businessKind = "bakery and deli"
+  areaServed = ["Old Town", "Northgate", "Ashby Green", "Fernhill"]
+  servicesHeading = "From our counter"
+  legalName = "Crumb & Co."
+  companyNumber = ""
+  registeredOffice = ""
+
+  [params.demo]
+    current = "bakery"
+
+  [params.cta]
+    title = "Celebration cakes"
+    text = "Birthdays, weddings and everything in between. Order at least 48 hours ahead."
+    button = "Order a cake"
+
+  [params.brand]
+    wordmark = ""
+    icon = ""
+    theme = "warm"
+    font = "playfair"
+    corners = "sharp"
+    uppercase = false
+    accent = "#166534"
+    accentText = "#ffffff"
+
+  [params.hero]
+    image = ""   # e.g. "photos/hero.jpg" in this demo's assets/ folder (licensed photo)
+
+  [params.contact]
+    phone = "01632 960707"
+    phoneIntl = "+441632960707"
+    email = "order@crumbandco.example"
+    whatsapp = ""
+
+  [params.address]
+    number = "26"
+    road = "Market Street"
+    area = "Old Town"
+    locality = "Fernhill"
+    region = ""
+    postcode = "FH1 2MS"
+    mapsQuery = "Crumb & Co. Fernhill"
+    latitude = 0.0
+    longitude = 0.0
+
+  [[params.hours]]
+    label = "Tuesday – Friday"
+    days = ["Tuesday", "Wednesday", "Thursday", "Friday"]
+    opens = "07:30"
+    closes = "17:00"
+  [[params.hours]]
+    label = "Saturday"
+    days = ["Saturday"]
+    opens = "07:30"
+    closes = "15:00"
+  [[params.hours]]
+    label = "Sunday – Monday"
+    days = ["Sunday", "Monday"]

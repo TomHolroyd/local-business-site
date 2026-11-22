@@ -3,7 +3,13 @@
 {{- $c := $p.contact }}
 {{- $a := $p.address }}
 
-<section class="hero">
+{{- $photo := "" }}
+{{- with $p.hero.image }}{{ $photo = resources.Get . }}{{ end }}
+<section class="hero{{ with $photo }} has-image{{ end }}">
+  {{- with $photo }}
+    {{- $sm := .Resize "800x webp q75" }}{{ $md := .Resize "1400x webp q75" }}{{ $lg := .Resize "2000x webp q70" }}
+  <img class="hero-photo" src="{{ $md.RelPermalink }}" srcset="{{ $sm.RelPermalink }} 800w, {{ $md.RelPermalink }} 1400w, {{ $lg.RelPermalink }} 2000w" sizes="100vw" width="{{ $md.Width }}" height="{{ $md.Height }}" alt="" fetchpriority="high">
+  {{- end }}
   <div class="wrap hero-inner">
     {{- with $p.brand.icon }}{{ with resources.Get . }}
       {{- $img := .Resize "320x webp" }}

@@ -30,7 +30,14 @@ Templates:
 - `layouts/home.html` is the single page: hero, services, an optional CTA band (`[params.cta]`; delete the table to hide it), and contact/hours. `layouts/baseof.html` is the shell.
 - `layouts/_partials/schema.html` builds schema.org `LocalBusiness` structured data, with the subtype from `params.schemaType`.
 - `layouts/robots.txt` and `layouts/home.llms.txt` (served at `/llms.txt`) are generated from the same params.
-- `assets/css/main.css` is a **Hugo template**, run through `resources.ExecuteAsTemplate`. The `:root` tokens come from `[params.brand]`: `theme` is dark or light, plus `accent` and `accentText`. Components must use only `var(--...)` tokens and no literal colours.
+- `assets/css/main.css` is a **Hugo template**, run through `resources.ExecuteAsTemplate`. The `:root` tokens come from `[params.brand]`:
+  - `theme`: dark, light or warm;
+  - `font`: a preset from `data/fonts.yaml`, with self-hosted OFL files in `assets/fonts/` (only the chosen one is published and preloaded);
+  - `corners`: sharp, soft or round;
+  - `uppercase`, `accent` and `accentText`.
+
+  Components must use only `var(--...)` tokens and no literal colours or fonts. `[params.hero] image` puts a photo behind the headline as an `<img>`, not a CSS background, because the CSP blocks inline styles.
+- `demos/`: the demo gallery. Each folder is a fictional business built from this same template with a config overlay, and `scripts/build-demos.sh` builds them all into `public-demos/`. Setting `[params.demo]` turns on the switcher bar, adds `noindex` and skips structured data. See `demos/README.md`. **Template changes must keep every demo building and looking right.** CI builds them all, which makes them the template's test suite.
 
 This uses the Hugo ≥0.146 template layout (`layouts/home.html`, `layouts/_partials/`). Use `hugo.Data` (not `site.Data`) and `locale` (not `languageCode`).
 
@@ -42,7 +49,7 @@ Unknown details are strings starting with `TODO`. A production build fails if `T
 
 - **Business facts come only from the owner.** Don't add services, prices, hours, accreditations, warranties or claims ("cheapest", "approved", "same-day") unless an issue explicitly states them.
 - **No dependencies:** no `package.json`, Hugo modules, themes, external scripts, web fonts, analytics, cookie banners or map iframes. "Get directions" is deliberately a plain Google Maps link, so the site sets no cookies and needs no consent banner.
-- **Keep the CSP intact.** `static/_headers` sets a strict Content-Security-Policy (`default-src 'none'`, self-hosted CSS and images only). Inline `style=` attributes, inline scripts and anything from another origin are **blocked in the browser** even though the build passes.
+- **Keep the CSP intact.** `static/_headers` sets a strict Content-Security-Policy (`default-src 'none'`, with self-hosted CSS, images and fonts only). Inline `style=` attributes, inline scripts and anything from another origin are **blocked in the browser** even though the build passes.
 - Keep the business name, address and phone **identical** to the Google Business Profile and directories, because consistency is a local-ranking signal.
 - UK English. Short, plain copy aimed at customers.
 - Must work at 360px width with no horizontal scroll.

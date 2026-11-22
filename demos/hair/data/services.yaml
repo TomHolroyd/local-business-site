@@ -1,0 +1,19 @@
+# Services for the Willow & Ash demo.
+
+- name: "Cut & style"
+  summary: "Restyle or tidy-up, finished with a blow-dry."
+
+- name: "Colour"
+  summary: "Full colour, roots and gloss, with a patch test before your first visit."
+
+- name: "Balayage & highlights"
+  summary: "Hand-painted, natural-looking colour that grows out softly."
+
+- name: "Blow-dries"
+  summary: "Bouncy, sleek or curled, perfect before a night out."
+
+- name: "Bridal hair"
+  summary: "Trials and wedding-morning styling, in the salon or on location."
+
+- name: "Men's cuts"
+  summary: "Clipper and scissor cuts, beard tidy included."
