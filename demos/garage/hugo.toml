@@ -1,0 +1,88 @@
+# Demo: Northgate Motors (fictional business; Ofcom drama phone numbers, made-up town).
+title = "Northgate Motors"
+
+# Each demo reuses the template's layouts/assets but has its own services list (and optional photos).
+[module]
+  [[module.mounts]]
+    source = "layouts"
+    target = "layouts"
+  [[module.mounts]]
+    source = "static"
+    target = "static"
+  [[module.mounts]]
+    source = "assets"
+    target = "assets"
+  [[module.mounts]]
+    source = "demos/garage/assets"
+    target = "assets"
+  [[module.mounts]]
+    source = "data"
+    target = "data"
+    files = ["! services.yaml"]
+  [[module.mounts]]
+    source = "demos/garage/data"
+    target = "data"
+
+[params]
+  seoTitle = "MOTs, Servicing & Repairs in Northgate, Fernhill"
+  headline = "MOTs, servicing & repairs in Northgate"
+  lead = "Family-run independent garage. Honest advice and fair prices on all makes and models."
+  description = "Independent garage in Northgate, Fernhill: MOTs, servicing, diagnostics, brakes, tyres and clutches on all makes and models."
+  businessKind = "independent garage"
+  areaServed = ["Northgate", "Old Town", "Ashby Green", "Fernhill"]
+  servicesHeading = "What we do"
+  legalName = "Northgate Motors"
+  companyNumber = ""
+  registeredOffice = ""
+
+  [params.demo]
+    current = "garage"
+
+  [params.cta]
+    title = "MOT due?"
+    text = "Call to book your MOT and we'll fix anything it needs while it's here."
+    button = "Book your MOT"
+
+  [params.brand]
+    wordmark = ""
+    icon = ""
+    theme = "dark"
+    font = "oswald"
+    corners = "sharp"
+    uppercase = true
+    accent = "#f59e0b"
+    accentText = "#000000"
+
+  [params.hero]
+    image = ""   # e.g. "photos/hero.jpg" in this demo's assets/ folder (licensed photo)
+
+  [params.contact]
+    phone = "01632 960101"
+    phoneIntl = "+441632960101"
+    email = "hello@northgate-motors.example"
+    whatsapp = ""
+
+  [params.address]
+    number = "Unit 4"
+    road = "Station Road"
+    area = "Northgate"
+    locality = "Fernhill"
+    region = ""
+    postcode = "FH2 4NG"
+    mapsQuery = "Northgate Motors Fernhill"
+    latitude = 0.0
+    longitude = 0.0
+
+  [[params.hours]]
+    label = "Monday – Friday"
+    days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+    opens = "08:00"
+    closes = "17:30"
+  [[params.hours]]
+    label = "Saturday"
+    days = ["Saturday"]
+    opens = "08:30"
+    closes = "12:30"
+  [[params.hours]]
+    label = "Sunday"
+    days = ["Sunday"]

@@ -57,9 +57,17 @@ enableRobotsTXT = true
     # Logos go in assets/brand/. Both are optional; without a wordmark the header shows the title.
     wordmark = "brand/logo-wordmark.png"  # wide logo for the header (PNG/JPG/WebP)
     icon = "brand/logo-square.png"        # square logo: favicon, share image, structured data
-    theme = "dark"                        # "dark" or "light": pick whichever suits the logo's background
+    theme = "dark"                        # "dark", "light" or "warm" (cream): pick whichever suits the logo's background
+    font = "system"                       # heading font: system, archivo, oswald, playfair, dmserif, nunito, josefin (see data/fonts.yaml)
+    corners = "soft"                      # "sharp", "soft" or "round" (round = pill-shaped buttons)
+    uppercase = false                     # UPPERCASE headings (suits oswald/josefin)
     accent = "#1d4ed8"                    # main brand colour (buttons, highlights, heading underline)
     accentText = "#ffffff"                # text colour on accent buttons: use "#000000" for light accents (yellow etc.)
+
+  # Optional hero photo behind the headline (assets path, e.g. "photos/hero.jpg"; landscape, ≥2000px wide).
+  # Use the client's own photo or a properly licensed one (e.g. Unsplash). Delete the table for no photo.
+  [params.hero]
+    image = ""
 
   # --- Contact --------------------------------------------------------------------------------
   [params.contact]

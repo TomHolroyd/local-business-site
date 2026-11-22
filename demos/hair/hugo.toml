@@ -1,0 +1,88 @@
+# Demo: Willow & Ash (fictional business; Ofcom drama phone numbers, made-up town).
+title = "Willow & Ash"
+
+# Each demo reuses the template's layouts/assets but has its own services list (and optional photos).
+[module]
+  [[module.mounts]]
+    source = "layouts"
+    target = "layouts"
+  [[module.mounts]]
+    source = "static"
+    target = "static"
+  [[module.mounts]]
+    source = "assets"
+    target = "assets"
+  [[module.mounts]]
+    source = "demos/hair/assets"
+    target = "assets"
+  [[module.mounts]]
+    source = "data"
+    target = "data"
+    files = ["! services.yaml"]
+  [[module.mounts]]
+    source = "demos/hair/data"
+    target = "data"
+
+[params]
+  seoTitle = "Hair Salon in Fernhill Old Town"
+  headline = "Relaxed, beautiful hair in Fernhill"
+  lead = "A calm, friendly salon for cuts, colour and everything in between. New clients always welcome."
+  description = "Hair salon in Fernhill Old Town for cuts, colour, balayage, blow-dries and bridal hair."
+  businessKind = "hair salon"
+  areaServed = ["Old Town", "Northgate", "Fernhill"]
+  servicesHeading = "Our services"
+  legalName = "Willow & Ash"
+  companyNumber = ""
+  registeredOffice = ""
+
+  [params.demo]
+    current = "hair"
+
+  [params.cta]
+    title = "New to us?"
+    text = "Book a free 15-minute consultation and we'll plan your perfect cut or colour together."
+    button = "Book a consultation"
+
+  [params.brand]
+    wordmark = ""
+    icon = ""
+    theme = "light"
+    font = "playfair"
+    corners = "soft"
+    uppercase = false
+    accent = "#5f7f6b"
+    accentText = "#ffffff"
+
+  [params.hero]
+    image = ""   # e.g. "photos/hero.jpg" in this demo's assets/ folder (licensed photo)
+
+  [params.contact]
+    phone = "01632 960202"
+    phoneIntl = "+441632960202"
+    email = "hello@willowandash.example"
+    whatsapp = ""
+
+  [params.address]
+    number = "18"
+    road = "Market Street"
+    area = "Old Town"
+    locality = "Fernhill"
+    region = ""
+    postcode = "FH1 2MS"
+    mapsQuery = "Willow & Ash Fernhill"
+    latitude = 0.0
+    longitude = 0.0
+
+  [[params.hours]]
+    label = "Tuesday – Friday"
+    days = ["Tuesday", "Wednesday", "Thursday", "Friday"]
+    opens = "09:00"
+    closes = "18:00"
+  [[params.hours]]
+    label = "Saturday"
+    days = ["Saturday"]
+    opens = "08:30"
+    closes = "16:00"
+  [[params.hours]]
+    label = "Sunday – Monday"
+    days = ["Sunday", "Monday"]

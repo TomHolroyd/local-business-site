@@ -1,0 +1,11 @@
+{{- /* Switcher bar shown on demo sites only. Context: site.Params.demo (see demos/common.toml). */ -}}
+<nav class="demo-bar" aria-label="Example websites">
+  <div class="wrap">
+    <span class="demo-label">Example site</span>
+    {{- $current := .current }}
+    {{- range .links }}
+      <a href="{{ .url }}"{{ if eq .slug $current }} aria-current="page"{{ end }}>{{ .name }}</a>
+    {{- end }}
+    {{- with .cta }}<a class="demo-cta" href="{{ .url }}">{{ .text }}</a>{{ end }}
+  </div>
+</nav>

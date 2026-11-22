@@ -1,0 +1,88 @@
+# Demo: Lumière Beauty Rooms (fictional business; Ofcom drama phone numbers, made-up town).
+title = "Lumière Beauty Rooms"
+
+# Each demo reuses the template's layouts/assets but has its own services list (and optional photos).
+[module]
+  [[module.mounts]]
+    source = "layouts"
+    target = "layouts"
+  [[module.mounts]]
+    source = "static"
+    target = "static"
+  [[module.mounts]]
+    source = "assets"
+    target = "assets"
+  [[module.mounts]]
+    source = "demos/beauty/assets"
+    target = "assets"
+  [[module.mounts]]
+    source = "data"
+    target = "data"
+    files = ["! services.yaml"]
+  [[module.mounts]]
+    source = "demos/beauty/data"
+    target = "data"
+
+[params]
+  seoTitle = "Beauty Salon in Fernhill: Facials, Lashes & Brows"
+  headline = "Time for you"
+  lead = "Facials, lashes, brows and massage in a calm, private treatment room."
+  description = "Beauty salon in Fernhill for facials, lash lifts, brow shaping, waxing, massage and spray tans."
+  businessKind = "beauty salon"
+  areaServed = ["Old Town", "Northgate", "Fernhill"]
+  servicesHeading = "Treatments"
+  legalName = "Lumière Beauty Rooms"
+  companyNumber = ""
+  registeredOffice = ""
+
+  [params.demo]
+    current = "beauty"
+
+  [params.cta]
+    title = "Gift vouchers"
+    text = "The perfect present: any treatment or amount, posted or ready to collect."
+    button = "Ask about vouchers"
+
+  [params.brand]
+    wordmark = ""
+    icon = ""
+    theme = "dark"
+    font = "dmserif"
+    corners = "soft"
+    uppercase = false
+    accent = "#c9a227"
+    accentText = "#000000"
+
+  [params.hero]
+    image = ""   # e.g. "photos/hero.jpg" in this demo's assets/ folder (licensed photo)
+
+  [params.contact]
+    phone = "01632 960404"
+    phoneIntl = "+441632960404"
+    email = "relax@lumiere-beauty.example"
+    whatsapp = ""
+
+  [params.address]
+    number = "2"
+    road = "Abbey Lane"
+    area = "Old Town"
+    locality = "Fernhill"
+    region = ""
+    postcode = "FH1 4AL"
+    mapsQuery = "Lumière Beauty Rooms Fernhill"
+    latitude = 0.0
+    longitude = 0.0
+
+  [[params.hours]]
+    label = "Tuesday – Thursday"
+    days = ["Tuesday", "Wednesday", "Thursday"]
+    opens = "10:00"
+    closes = "20:00"
+  [[params.hours]]
+    label = "Friday – Saturday"
+    days = ["Friday", "Saturday"]
+    opens = "09:00"
+    closes = "17:00"
+  [[params.hours]]
+    label = "Sunday – Monday"
+    days = ["Sunday", "Monday"]

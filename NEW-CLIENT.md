@@ -17,7 +17,9 @@ From "yes, let's do it" to a live site and a claimed Google profile. Copy this c
 
 ## 1. Create the repo
 - [ ] On GitHub, open the template repo → **Use this template** → **Create a new repository**. Name it after the client, e.g. `acme-plumbing`. Make it **private** (free, but no branch protection) or **public** (branch protection works, and there's nothing secret in it).
-- [ ] Clone it, then check `CLAUDE.md` and `README.md` still make sense. Replace the README's intro with a line about the client.
+- [ ] Clone it, then delete the demo gallery, which is only needed in the template: `demos/`, `scripts/build-demos.sh` and `wrangler.demos.jsonc`. CI skips the demo steps automatically once `demos/` is gone.
+- [ ] Check `CLAUDE.md` and `README.md` still make sense. Replace the README's intro with a line about the client.
+- [ ] Show the client the demo gallery to choose a starting style. Copy that demo's `[params.brand]` values as a starting point.
 
 ## 2. Fill in the client details
 - [ ] `hugo.toml`: every `TODO`.
@@ -25,7 +27,11 @@ From "yes, let's do it" to a live site and a claimed Google profile. Copy this c
   - **`schemaType`:** the most specific type, e.g. `AutoRepair`, `Plumber`, `HairSalon`.
   - **`seoTitle` and `headline`:** main service plus place ("Plumber in Christchurch").
 - [ ] `data/services.yaml`: real services only.
-- [ ] `assets/brand/`: add the logos, and set `[params.brand]` `wordmark` and `icon`, or set them to `""` if there's no logo. Choose `theme` (dark or light) to suit the logo's background, then set `accent` and `accentText`.
+- [ ] `assets/brand/`: add the logos, and set `[params.brand]` `wordmark` and `icon`, or set them to `""` if there's no logo. Then set the brand options:
+  - `theme` (dark, light or warm), to suit the logo's background;
+  - `font`, `corners` and `uppercase`;
+  - `accent` and `accentText`.
+- [ ] Optional hero photo: put it in `assets/photos/hero.jpg` and set `[params.hero] image`. Use the client's own photo or a licensed one.
 - [ ] `wrangler.jsonc`: the Worker name (e.g. `acme-plumbing`) and the domain.
 - [ ] `scripts/build.sh` passes in production mode. Then run `hugo server` and check the site at phone width.
 

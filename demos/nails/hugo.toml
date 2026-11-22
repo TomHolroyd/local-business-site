@@ -1,0 +1,90 @@
+# Demo: Polished (fictional business; Ofcom drama phone numbers, made-up town).
+title = "Polished"
+
+# Each demo reuses the template's layouts/assets but has its own services list (and optional photos).
+[module]
+  [[module.mounts]]
+    source = "layouts"
+    target = "layouts"
+  [[module.mounts]]
+    source = "static"
+    target = "static"
+  [[module.mounts]]
+    source = "assets"
+    target = "assets"
+  [[module.mounts]]
+    source = "demos/nails/assets"
+    target = "assets"
+  [[module.mounts]]
+    source = "data"
+    target = "data"
+    files = ["! services.yaml"]
+  [[module.mounts]]
+    source = "demos/nails/data"
+    target = "data"
+
+[params]
+  seoTitle = "Nail Salon in Fernhill: Gel, BIAB & Nail Art"
+  headline = "Nails you'll want to show off"
+  lead = "Gel, BIAB, extensions and nail art in a bright, friendly studio. Walk-ins welcome when we're free."
+  description = "Nail studio in Fernhill: gel manicures, BIAB, acrylic extensions, pedicures and custom nail art."
+  businessKind = "nail studio"
+  areaServed = ["Old Town", "Ashby Green", "Fernhill"]
+  servicesHeading = "Treatments"
+  legalName = "Polished"
+  companyNumber = ""
+  registeredOffice = ""
+
+  [params.demo]
+    current = "nails"
+
+  [params.cta]
+    title = "Treat yourself"
+    text = "Bring a friend and you both get 10% off your first set."
+    button = "Book now"
+
+  [params.brand]
+    wordmark = ""
+    icon = ""
+    theme = "light"
+    font = "josefin"
+    corners = "round"
+    uppercase = true
+    accent = "#db2777"
+    accentText = "#ffffff"
+
+  [params.hero]
+    image = ""   # e.g. "photos/hero.jpg" in this demo's assets/ folder (licensed photo)
+
+  [params.contact]
+    phone = "01632 960303"
+    phoneIntl = "+441632960303"
+    email = "book@polished-nails.example"
+    whatsapp = ""
+
+  [params.address]
+    number = "7"
+    road = "The Arcade"
+    area = "Old Town"
+    locality = "Fernhill"
+    region = ""
+    postcode = "FH1 3TA"
+    mapsQuery = "Polished Fernhill"
+    latitude = 0.0
+    longitude = 0.0
+
+  [[params.hours]]
+    label = "Monday – Friday"
+    days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+    opens = "09:30"
+    closes = "19:00"
+  [[params.hours]]
+    label = "Saturday"
+    days = ["Saturday"]
+    opens = "09:00"
+    closes = "17:00"
+  [[params.hours]]
+    label = "Sunday"
+    days = ["Sunday"]
+    opens = "10:00"
+    closes = "15:00"

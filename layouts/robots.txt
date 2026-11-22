@@ -2,7 +2,12 @@
 # Content-Signal (https://contentsignals.org): search indexing and use in AI answers are always
 # allowed; AI training follows [params.robots] aiTrain in hugo.toml.
 User-agent: *
+{{- if site.Params.demo }}
+# Demo site for a fictional business: keep it out of search engines and AI answers.
+Disallow: /
+{{- else }}
 Content-Signal: search=yes, ai-input=yes, ai-train={{ site.Params.robots.aiTrain | default "no" }}
 Allow: /
+{{- end }}
 
 Sitemap: {{ "sitemap.xml" | absURL }}

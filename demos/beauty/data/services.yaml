@@ -1,0 +1,19 @@
+# Services for the Lumière Beauty Rooms demo.
+
+- name: "Facials"
+  summary: "Tailored to your skin, from a quick glow-up to a deep-cleansing hour."
+
+- name: "Lash lift & tint"
+  summary: "Curled, darker lashes for six to eight weeks, without extensions."
+
+- name: "Brows"
+  summary: "Shaping, tinting and lamination for fuller-looking brows."
+
+- name: "Waxing"
+  summary: "Quick, gentle waxing for face and body."
+
+- name: "Massage"
+  summary: "Back, neck and shoulder or full-body massage to unwind."
+
+- name: "Spray tan"
+  summary: "A natural, streak-free glow in fifteen minutes."

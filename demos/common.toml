@@ -1,0 +1,36 @@
+# Shared settings for every demo site (see demos/README.md). Loaded after hugo.toml, before each demo's own hugo.toml.
+
+[params.demo]
+  # Optional call to action in the switcher bar, e.g. a link to your own website:
+  # cta = { text = "Get a site like this →", url = "https://your-site.example/" }
+  [[params.demo.links]]
+    slug = "garage"
+    name = "Garage"
+    url = "/garage/"
+  [[params.demo.links]]
+    slug = "hair"
+    name = "Hair salon"
+    url = "/hair/"
+  [[params.demo.links]]
+    slug = "nails"
+    name = "Nail salon"
+    url = "/nails/"
+  [[params.demo.links]]
+    slug = "beauty"
+    name = "Beauty"
+    url = "/beauty/"
+  [[params.demo.links]]
+    slug = "cafe"
+    name = "Café"
+    url = "/cafe/"
+  [[params.demo.links]]
+    slug = "trades"
+    name = "Trades"
+    url = "/trades/"
+  [[params.demo.links]]
+    slug = "bakery"
+    name = "Bakery & deli"
+    url = "/bakery/"
+
+[params.robots]
+  aiTrain = "no"

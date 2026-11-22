@@ -1,0 +1,16 @@
+// Cloudflare Worker for the demo gallery (scripts/build-demos.sh → public-demos/).
+// Static assets only, free. Cloudflare Workers Builds settings for a SEPARATE Worker named
+// "local-business-demos" connected to this repo:
+//   Build command:  scripts/build-demos.sh
+//   Deploy command: npx wrangler deploy -c wrangler.demos.jsonc
+//   Non-production branch deploy command: npx wrangler versions upload -c wrangler.demos.jsonc
+// Set the build variable DEMOS_URL to the demo site's address (used for og:url only).
+// Client repos made from this template can delete this file, demos/ and scripts/build-demos.sh.
+{
+  "name": "local-business-demos",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./public-demos",
+    "not_found_handling": "404-page"
+  }
+}
