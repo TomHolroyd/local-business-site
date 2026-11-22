@@ -1,0 +1,25 @@
+name: Website change request
+description: Ask for something on the website to be added or changed. Claude will prepare it for review.
+title: "Change: "
+labels: [change-request]
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of change?
+      options:
+        - Add or change a service
+        - Opening hours
+        - Contact details (phone, email, address)
+        - Wording or spelling
+        - Something else
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: What should change?
+      description: Write it exactly as you'd like it to appear on the site, if you can.
+      placeholder: e.g. "Add air conditioning regas to the services list."
+    validations:
+      required: true

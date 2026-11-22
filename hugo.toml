@@ -1,0 +1,102 @@
+# Client configuration. EVERYTHING specific to the business lives here, in data/services.yaml,
+# in assets/brand/ (logos) and in wrangler.jsonc. Templates never hard-code business facts.
+#
+# Any value starting with "TODO" is a placeholder. Production builds (scripts/build.sh) fail while
+# any TODO would appear on the site, so a new client can't go live half-filled. See NEW-CLIENT.md.
+
+baseURL = "https://TODO-domain.example/"
+locale = "en-GB"
+title = "TODO Business Name"           # trading name, exactly as on the sign / Google profile
+disableKinds = ["taxonomy", "term", "RSS"]
+enableRobotsTXT = true
+
+# llms.txt: a plain-text summary of the business for AI assistants (layouts/home.llms.txt).
+[outputFormats.llms]
+  mediaType = "text/plain"
+  baseName = "llms"
+  isPlainText = true
+  notAlternative = true
+[outputs]
+  home = ["html", "llms"]
+
+[params]
+  # NB (TOML): plain `key = value` lines must stay ABOVE the first [params.xxx] table below.
+  # --- What & where: drives title, headline and search snippets -------------------------
+  # Put the main service and the place in these; that's what people search for.
+  seoTitle = "TODO e.g. Plumber in Christchurch, Dorset"
+  headline = "TODO e.g. Reliable plumbing in Christchurch"
+  lead = "TODO one or two sentences under the headline"
+  description = "TODO 140–160 characters: what you do, where. The phone number is appended automatically."
+  # schema.org type for structured data. Use the most specific LocalBusiness subtype:
+  # AutoRepair, HairSalon, BeautySalon, Plumber, Electrician, HousePainter, RoofingContractor,
+  # Locksmith, CafeOrCoffeeShop, Restaurant, Bakery, Florist, DryCleaningOrLaundry, ProfessionalService...
+  schemaType = "LocalBusiness"
+  businessKind = "TODO e.g. family-run plumbing and heating business"   # used in llms.txt: "<name> is a <businessKind> at ..."
+  areaServed = []                       # e.g. ["Highcliffe", "Mudeford", "Christchurch"]. Last item is the wider area.
+  sameAs = []                           # official profile URLs: Google Business Profile, Facebook, Bing Places...
+
+  # Section headings on the homepage.
+  servicesHeading = "What we do"
+
+  # --- Legal ------------------------------------------------------------------------------
+  # UK limited companies MUST show registered name, number, place of registration and registered
+  # office. Sole traders: set legalName to your own name and leave the company fields empty ("").
+  legalName = "TODO legal name"
+  registeredIn = "England and Wales"
+  companyNumber = "TODO Companies House number, or empty for a sole trader"
+  registeredOffice = "TODO registered office, or empty for a sole trader"
+
+  # Optional call-to-action band between services and contact. Delete the block to hide it.
+  [params.cta]
+    title = "TODO e.g. Boiler playing up?"
+    text = "TODO e.g. Same-week boiler repairs. Call and we will talk you through it."
+    button = "TODO e.g. Call now"   # button dials the phone number
+
+  # --- Brand --------------------------------------------------------------------------------
+  [params.brand]
+    # Logos go in assets/brand/. Both are optional; without a wordmark the header shows the title.
+    wordmark = "brand/logo-wordmark.png"  # wide logo for the header (PNG/JPG/WebP)
+    icon = "brand/logo-square.png"        # square logo: favicon, share image, structured data
+    theme = "dark"                        # "dark" or "light": pick whichever suits the logo's background
+    accent = "#1d4ed8"                    # main brand colour (buttons, highlights, heading underline)
+    accentText = "#ffffff"                # text colour on accent buttons: use "#000000" for light accents (yellow etc.)
+
+  # --- Contact --------------------------------------------------------------------------------
+  [params.contact]
+    phone = "TODO e.g. 01632 960123"      # display format
+    phoneIntl = "TODO e.g. +441632960123" # tel: link format
+    email = "TODO email"
+    whatsapp = ""                         # optional, international digits only, e.g. "447700900123"
+
+  [params.address]
+    number = "TODO e.g. 12"
+    road = "TODO e.g. High Street"
+    area = "TODO e.g. Old Town"             # neighbourhood; "" if none
+    locality = "TODO town"
+    region = "TODO county"
+    postcode = "TODO postcode"
+    mapsQuery = "TODO business name, street, postcode (used for the Get directions link)"
+    latitude = 0.0                        # from https://api.postcodes.io/postcodes/<POSTCODE> or Google Maps
+    longitude = 0.0
+
+  # --- Opening hours ----------------------------------------------------------------------
+  # Displayed in order. `days` are full English day names (they feed Google's structured data).
+  # Times are 24h "HH:MM". Leave opens/closes out for a closed day.
+  [[params.hours]]
+    label = "Monday – Friday"
+    days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+    opens = "09:00"
+    closes = "17:00"
+  [[params.hours]]
+    label = "Saturday"
+    days = ["Saturday"]
+  [[params.hours]]
+    label = "Sunday"
+    days = ["Sunday"]
+
+  # --- Crawlers ---------------------------------------------------------------------------
+  [params.robots]
+    aiTrain = "yes"                       # "yes" or "no": may AI companies train on this site? (search + AI answers are always allowed)
+
+[minify]
+  minifyOutput = true

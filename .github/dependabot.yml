@@ -1,0 +1,12 @@
+# Only GitHub Actions need updating: the site has no npm/Go dependencies.
+# Actions are pinned to commit SHAs (with a `# vX.Y.Z` comment); Dependabot bumps both together.
+# Hugo itself is bumped by the monthly maintenance agent (.github/workflows/maintenance.yml).
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      actions:
+        patterns: ["*"]

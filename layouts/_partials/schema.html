@@ -1,0 +1,53 @@
+{{- /*
+  schema.org LocalBusiness (subtype from params.schemaType) structured data. Google, Bing and AI assistants read this to understand
+  what the business is, where it is, when it's open and what it does. Every value comes from
+  hugo.toml [params] or data/services.yaml. Don't hard-code business facts here.
+*/ -}}
+{{- $p := site.Params }}
+{{- $a := $p.address }}
+{{- $id := printf "%s#business" site.BaseURL }}
+
+{{- $services := slice }}
+{{- range hugo.Data.services }}
+  {{- $services = $services | append (dict "@type" "Offer" "itemOffered" (dict "@type" "Service" "name" .name "description" .summary)) }}
+{{- end }}
+
+{{- $hours := slice }}
+{{- range $p.hours }}
+  {{- if .opens }}
+    {{- $hours = $hours | append (dict "@type" "OpeningHoursSpecification" "dayOfWeek" .days "opens" .opens "closes" .closes) }}
+  {{- end }}
+{{- end }}
+
+{{- $areas := slice }}
+{{- range $p.areaServed }}{{ $areas = $areas | append (dict "@type" "Place" "name" .) }}{{ end }}
+
+{{- $schema := dict
+  "@context" "https://schema.org"
+  "@type" ($p.schemaType | default "LocalBusiness")
+  "@id" $id
+  "name" site.Title
+  "description" $p.description
+  "url" site.BaseURL
+  "telephone" $p.contact.phoneIntl
+  "email" $p.contact.email
+  "address" (dict
+    "@type" "PostalAddress"
+    "streetAddress" (printf "%s %s" $a.number $a.road)
+    "addressLocality" $a.locality
+    "addressRegion" $a.region
+    "postalCode" $a.postcode
+    "addressCountry" "GB")
+  "geo" (dict "@type" "GeoCoordinates" "latitude" $a.latitude "longitude" $a.longitude)
+  "hasMap" (printf "https://www.google.com/maps/search/?api=1&query=%s" ($a.mapsQuery | urlquery))
+  "openingHoursSpecification" $hours
+  "areaServed" $areas
+  "hasOfferCatalog" (dict "@type" "OfferCatalog" "name" "Services" "itemListElement" $services)
+}}
+{{- with $p.brand.icon }}{{ with resources.Get . }}
+  {{- $img := (.Resize "512x512 png").Permalink }}
+  {{- $schema = merge $schema (dict "logo" $img "image" $img) }}
+{{- end }}{{ end }}
+{{- with $p.legalName }}{{ $schema = merge $schema (dict "legalName" .) }}{{ end }}
+{{- with $p.sameAs }}{{ $schema = merge $schema (dict "sameAs" .) }}{{ end }}
+<script type="application/ld+json">{{ $schema | jsonify | safeJS }}</script>

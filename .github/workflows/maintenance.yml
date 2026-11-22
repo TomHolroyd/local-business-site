@@ -1,0 +1,40 @@
+# Monthly maintenance agent: keeps Hugo current and checks the live site, so nobody has to remember to.
+name: Monthly maintenance
+
+on:
+  schedule:
+    - cron: "0 7 1 * *" # 07:00 UTC on the 1st of each month
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+  id-token: write
+
+jobs:
+  maintain:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: anthropics/claude-code-action@acfe7992852970efb4fee683d63d628e3e52df67 # v1.0.286
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          # anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          prompt: |
+            REPO: ${{ github.repository }}
+            You are doing the monthly maintenance pass described in CLAUDE.md.
+
+            1. Hugo version: compare .hugo-version with the latest release
+               (`gh release view --repo gohugoio/hugo --json tagName`). If newer, install it, run
+               `scripts/build.sh --preview`, fix any deprecation warnings, and open ONE PR titled
+               "chore: bump Hugo to vX.Y.Z" that updates .hugo-version (and any template fixes).
+            2. Skip this step if this repo is the template itself
+               (`gh api repos/${{ github.repository }} --jq .is_template` prints true).
+               Otherwise, if hugo.toml still contains "TODO" placeholders, open (or update, never duplicate) an issue
+               titled "Site details still missing" listing them.
+            Do not change any business content. If nothing needs doing, do nothing.
+          claude_args: |
+            --allowedTools "Bash(gh:*),Bash(git:*),Bash(curl:*),Bash(tar:*),Bash(sudo mv:*),Bash(hugo:*),Bash(scripts/build.sh:*),Bash(cat:*),Read,Edit,Write,Glob,Grep"

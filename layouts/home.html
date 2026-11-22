@@ -1,0 +1,88 @@
+{{ define "main" }}
+{{- $p := site.Params }}
+{{- $c := $p.contact }}
+{{- $a := $p.address }}
+
+<section class="hero">
+  <div class="wrap hero-inner">
+    {{- with $p.brand.icon }}{{ with resources.Get . }}
+      {{- $img := .Resize "320x webp" }}
+      <img class="hero-mark" src="{{ $img.RelPermalink }}" width="160" height="{{ div (mul $img.Height 160) $img.Width }}" alt="">
+    {{- end }}{{ end }}
+    <h1>{{ $p.headline }}</h1>
+    <p class="lead">{{ $p.lead }}</p>
+    <div class="cta-row">
+      <a class="btn" href="tel:{{ $c.phoneIntl }}">Call {{ $c.phone }}</a>
+      {{- with $c.whatsapp }}
+        <a class="btn btn-ghost" href="https://wa.me/{{ . }}">Message on WhatsApp</a>
+      {{- end }}
+      <a class="btn btn-ghost" href="mailto:{{ $c.email }}">Email us</a>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="section">
+  <div class="wrap">
+    <h2>{{ $p.servicesHeading }}</h2>
+    <ul class="services">
+      {{- range hugo.Data.services }}
+        <li class="service">
+          <h3>{{ .name }}</h3>
+          <p>{{ .summary }}</p>
+        </li>
+      {{- end }}
+    </ul>
+  </div>
+</section>
+
+{{- with $p.cta }}
+<section class="section band">
+  <div class="wrap band-inner">
+    <div>
+      <h2>{{ .title }}</h2>
+      <p>{{ .text }}</p>
+    </div>
+    <a class="btn" href="tel:{{ $c.phoneIntl }}">{{ .button }}</a>
+  </div>
+</section>
+{{- end }}
+
+<section id="contact" class="section">
+  <div class="wrap contact">
+    <div>
+      <h2>Find us</h2>
+      <address>
+        <strong>{{ site.Title }}</strong><br>
+        {{ $a.number }} {{ $a.road }}<br>
+        {{- with $a.area }}
+        {{ . }}<br>
+        {{- end }}
+        {{ $a.locality }}<br>
+        {{ $a.postcode }}
+      </address>
+      <p><a href="https://www.google.com/maps/search/?api=1&amp;query={{ $a.mapsQuery | urlquery }}" rel="noopener">Get directions</a></p>
+      {{- with $p.areaServed }}
+        {{- if eq (len .) 1 }}
+      <p class="areas">Covering {{ index . 0 }}.</p>
+        {{- else }}
+      <p class="areas">Covering {{ delimit (first (sub (len .) 1) .) ", " }} and the rest of {{ index . (sub (len .) 1) }}.</p>
+        {{- end }}
+      {{- end }}
+      <p>
+        Phone: <a href="tel:{{ $c.phoneIntl }}">{{ $c.phone }}</a><br>
+        Email: <a href="mailto:{{ $c.email }}">{{ $c.email }}</a>
+      </p>
+    </div>
+    <div>
+      <h2>Opening hours</h2>
+      <table class="hours">
+        {{- range $p.hours }}
+          <tr><th scope="row">{{ .label }}</th><td>
+            {{- if .opens }}{{ partial "time12.html" .opens }} – {{ partial "time12.html" .closes }}{{ else }}Closed{{ end -}}
+          </td></tr>
+        {{- end }}
+      </table>
+    </div>
+  </div>
+</section>
+{{ end }}

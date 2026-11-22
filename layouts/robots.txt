@@ -1,0 +1,8 @@
+# Everyone welcome: search engines and AI assistants alike. Local businesses want to be found.
+# Content-Signal (https://contentsignals.org): search indexing and use in AI answers are always
+# allowed; AI training follows [params.robots] aiTrain in hugo.toml.
+User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train={{ site.Params.robots.aiTrain | default "no" }}
+Allow: /
+
+Sitemap: {{ "sitemap.xml" | absURL }}

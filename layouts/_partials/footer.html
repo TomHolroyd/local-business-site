@@ -1,0 +1,10 @@
+{{- $p := site.Params }}
+<footer class="site-footer">
+  <div class="wrap">
+    <p>&copy; {{ now.Year }} {{ $p.legalName }}.
+      {{- with $p.companyNumber }} Registered in {{ $p.registeredIn }}, company no. {{ . }}.{{ end }}</p>
+    {{- with $p.registeredOffice }}
+    <p>Registered office: {{ . }}</p>
+    {{- end }}
+  </div>
+</footer>

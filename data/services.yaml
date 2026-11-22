@@ -1,0 +1,11 @@
+# Services shown on the homepage, in the structured data and in llms.txt, in this order.
+# Each needs a name and a one- or two-sentence summary. Use only services the owner actually offers.
+
+- name: TODO Service one
+  summary: TODO One or two sentences, written for customers rather than experts.
+
+- name: TODO Service two
+  summary: TODO One or two sentences.
+
+- name: TODO Service three
+  summary: TODO One or two sentences.

@@ -1,0 +1,40 @@
+# Implementation agent.
+# Triggers: an issue labelled `change-request` (e.g. from the change-request issue form),
+# or anyone with write access mentioning @claude in an issue / PR comment.
+# Claude works on a branch and opens a PR; it never pushes to main (branch protection enforces this).
+name: Claude
+
+on:
+  issues:
+    types: [opened, labeled]
+  issue_comment:
+    types: [created]
+  pull_request_review_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+  id-token: write
+
+jobs:
+  claude:
+    if: >
+      (github.event_name == 'issues' && contains(github.event.issue.labels.*.name, 'change-request')) ||
+      (github.event_name != 'issues' && contains(github.event.comment.body, '@claude'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 1
+
+      - uses: anthropics/claude-code-action@acfe7992852970efb4fee683d63d628e3e52df67 # v1.0.286
+        with:
+          # Use ONE of these secrets: a Claude subscription token (`claude setup-token`) or an API key.
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          # anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          label_trigger: change-request
+          claude_args: |
+            --allowedTools "Bash(scripts/build.sh:*),Bash(git:*),Read,Edit,Write,Glob,Grep"

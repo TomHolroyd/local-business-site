@@ -1,0 +1,32 @@
+{{- $p := site.Params -}}
+{{- $a := $p.address -}}
+{{- $c := $p.contact -}}
+# {{ site.Title }}
+
+> {{ $p.description }}
+
+{{ site.Title }} ({{ $p.legalName }}{{ with $p.companyNumber }}, company no. {{ . }}{{ end }}) is {{ with $p.businessKind }}{{ if findRE `^[aeiouAEIOU]` . }}an{{ else }}a{{ end }} {{ . }}{{ end }} at {{ $a.number }} {{ $a.road }},{{ with $a.area }} {{ . }},{{ end }} {{ $a.locality }} {{ $a.postcode }}, United Kingdom.
+
+## Contact
+
+- Phone: {{ $c.phone }}
+- Email: {{ $c.email }}
+- Address: {{ $a.number }} {{ $a.road }},{{ with $a.area }} {{ . }},{{ end }} {{ $a.locality }}, {{ $a.postcode }}
+- Website: {{ site.BaseURL }}
+
+## Opening hours
+{{ range $p.hours }}
+- {{ .label }}: {{ if .opens }}{{ partial "time12.html" .opens }} – {{ partial "time12.html" .closes }}{{ else }}Closed{{ end }}
+{{- end }}
+
+## Services
+{{ range hugo.Data.services }}
+- {{ .name }}: {{ .summary }}
+{{- end }}
+
+{{- with $p.areaServed }}
+
+## Areas covered
+
+{{ delimit . ", " }}.
+{{- end }}

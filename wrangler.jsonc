@@ -1,0 +1,19 @@
+// Cloudflare Workers config: serves the Hugo output in public/ as static assets only.
+// There is deliberately no "main" (no Worker script), so every request is a free static-asset request.
+//
+// Cloudflare dashboard (Workers Builds) settings for this repo:
+//   Build command:  scripts/build.sh
+//   Deploy command: npx wrangler deploy
+//   Non-production branch deploy command: npx wrangler versions upload   (the default)
+{
+  "name": "TODO-worker-name", // e.g. "acme-plumbing"; must match the Worker's name in the Cloudflare dashboard
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./public",
+    "not_found_handling": "404-page"
+  },
+  "routes": [
+    { "pattern": "TODO-domain.example", "custom_domain": true },
+    { "pattern": "www.TODO-domain.example", "custom_domain": true }
+  ]
+}

@@ -1,0 +1,20 @@
+{{- $c := site.Params.contact }}
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="{{ "/" | relURL }}" aria-label="{{ site.Title }} home">
+      {{- $logo := "" }}
+      {{- with site.Params.brand.wordmark }}{{ $logo = resources.Get . }}{{ end }}
+      {{- with $logo }}
+        {{- $img := .Resize "560x webp" }}
+        <img src="{{ $img.RelPermalink }}" width="280" height="{{ div (mul $img.Height 280) $img.Width }}" alt="{{ site.Title }}">
+      {{- else }}
+        <span class="brand-text">{{ site.Title }}</span>
+      {{- end }}
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="{{ "/#services" | relURL }}">Services</a>
+      <a href="{{ "/#contact" | relURL }}">Contact</a>
+      <a class="btn btn-sm" href="tel:{{ $c.phoneIntl }}">Call {{ $c.phone }}</a>
+    </nav>
+  </div>
+</header>

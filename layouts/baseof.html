@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  {{- $p := site.Params }}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ if .IsHome }}{{ $p.seoTitle }} | {{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ $p.description }} Call {{ $p.contact.phone }}.">
+  <meta name="theme-color" content="{{ cond (eq $p.brand.theme "light") "#ffffff" "#000000" }}">
+  {{- if eq .Kind "404" }}
+  <meta name="robots" content="noindex">
+  {{- else }}
+  <link rel="canonical" href="{{ .Permalink }}">
+  {{- end }}
+
+  {{- /* main.css is a template: brand colours and theme come from [params.brand]. */}}
+  {{- $css := resources.Get "css/main.css" | resources.ExecuteAsTemplate "css/main.css" . | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+
+  {{- with $p.brand.icon }}{{ with resources.Get . }}
+    <link rel="icon" href="{{ (.Resize "64x64 webp").RelPermalink }}" type="image/webp">
+    <link rel="apple-touch-icon" href="{{ (.Resize "180x180 png").RelPermalink }}">
+    <meta property="og:image" content="{{ (.Resize "512x512 png").Permalink }}">
+  {{- end }}{{ end }}
+  <meta property="og:title" content="{{ $p.seoTitle }} | {{ site.Title }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta property="og:site_name" content="{{ site.Title }}">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:description" content="{{ $p.description }}">
+  <meta property="og:type" content="website">
+
+  {{ partial "schema.html" . }}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  {{ partial "header.html" . }}
+  <main id="main">
+    {{ block "main" . }}{{ end }}
+  </main>
+  {{ partial "footer.html" . }}
+</body>
+</html>

@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      # PRs, and the template repo itself, build in preview mode (placeholders allowed).
+      # A client repo's main branch must be placeholder-free.
+      - name: Build
+        run: |
+          if [[ "${{ github.event_name }}" == "pull_request" || "${{ github.event.repository.is_template }}" == "true" ]]; then
+            scripts/build.sh --preview
+          else
+            scripts/build.sh
+          fi
+
+      - name: Check internal links
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        with:
+          args: --offline --no-progress --root-dir "${{ github.workspace }}/public" 'public/**/*.html'
+          fail: true
